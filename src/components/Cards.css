@@ -1,0 +1,67 @@
+.App{
+    margin: 0 auto;
+    
+}
+.word{
+    
+    border: 1px solid black;
+    width: 20em;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 5px;
+
+    
+}
+.word-meaning {
+    font-size: larger;
+    font-weight: 600;
+    padding: 20px;
+    color: rgb(62, 62, 190);
+}
+.word-transcription{
+padding: 10px;
+}
+.word-translation{
+    padding: 10px;
+}
+.CardBoxesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cardBox{
+    background-color: aquamarine;
+    height: 14em;
+    width: 380px;
+    position: relative;
+    padding: 20px;
+    
+  
+}
+.cardBox .word {
+    position: absolute;
+    display: none;
+    bottom: 10px;
+    margin: 10px;
+    
+}
+
+.cardBox .word:nth-child(1) {top: 0px;left: 0px; display: block;}
+.cardBox .word:nth-child(2) {top: 10px;left: 10px; display: block;}
+.cardBox .word:nth-child(3) {top: 20px;left: 20px; display: block;}
+.cardBox .word:nth-child(4) {top: 30px;left: 30px; display: block;}
+.cardBox .word:nth-child(5) {top: 40px;left: 40px; display: block;}
+
+.cardBox.guessed{
+    background-color: rgb(116, 224, 241);
+}
+
+.cardBox.unknown{
+background-color: rgb(240, 105, 105);
+}
+
+.TableContainer{
+    padding:20px;
+    margin: 20px;
+}
