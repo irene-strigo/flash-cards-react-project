@@ -10,6 +10,7 @@
     margin: 10px auto;
     background-color: white;
     border-radius: 5px;
+    height: 12em;
 
     
 }
@@ -29,13 +30,15 @@ padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    
 }
 .cardBox{
-    background-color: aquamarine;
+    background-color: rgb(186, 243, 137);
     height: 14em;
     width: 380px;
-    position: relative;
+    margin: 10px;
     padding: 20px;
+    position: relative;
     
   
 }
@@ -44,7 +47,7 @@ padding: 10px;
     display: none;
     bottom: 10px;
     margin: 10px;
-    
+   
 }
 
 .cardBox .word:nth-child(1) {top: 0px;left: 0px; display: block;}
@@ -58,10 +61,43 @@ padding: 10px;
 }
 
 .cardBox.unknown{
-background-color: rgb(240, 105, 105);
+background-color: rgb(244, 82, 95);
 }
 
 .TableContainer{
     padding:20px;
     margin: 20px;
+}
+
+.MyHeader{
+    background-color: rgb(186, 243, 137);
+    height: 10em;
+    
+   
+}
+.Heading{
+    font-size: 30px;
+    margin: 2em auto;
+    padding-right: 10em;
+}
+.nav-link{
+    color: black;
+    margin: 10px;
+}
+
+.LogoPng{
+    height: 50px;
+}
+.nav{
+    align-items: flex-end;
+    
+}
+.word-translation{
+    display: none
+}
+.word-translation.showWord{
+    display: block;
+}
+.explanation.onShow{
+    display: none;
 }

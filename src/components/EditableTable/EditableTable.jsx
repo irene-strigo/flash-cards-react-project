@@ -119,10 +119,10 @@ const EditableTable = ({ columns, rows, actions }) => {
                                     </button>
                                 }
                                 {isEditMode && rowIDToEdit === row.id
-                                    ? <button onClick={() => handleCancelEditing()} className='custom-table__action-btn'>
+                                    ? <button onClick={() => handleCancelEditing()} className='custom-table__action-btn delbtn'>
                                         <XSquare />
                                     </button>
-                                    : <button onClick={() => handleRemoveRow(row.id)} className='custom-table__action-btn'>
+                                    : <button onClick={() => handleRemoveRow(row.id)} className='custom-table__action-btn delbtn'>
                                         <Trash />
                                     </button>
                                 }

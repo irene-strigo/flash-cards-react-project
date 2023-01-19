@@ -1,8 +1,9 @@
 
 import './App.css';
-import { Card, NewCardsBox } from './components/Cards';
+import { Card, NewCardsBox, Header } from './components/Cards';
 import './components/Cards.css';
 import EditableTable from "./components/EditableTable/EditableTable";
+
 
 
 const words = [
@@ -133,7 +134,7 @@ const columns = [
 function App() {
   return (
     <div className="App">
-
+      <Header></Header>
       <Card {...word} />
       <div className='CardBoxesContainer'>
         <label>неизвестные
