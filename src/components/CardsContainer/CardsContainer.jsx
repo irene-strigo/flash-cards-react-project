@@ -6,7 +6,6 @@ export const CardsContainer = ({ items }) => {
 
     return (
         <div className="cards">
-            <h1>Cards</h1>
 
             {
                 items && items.map(item => {

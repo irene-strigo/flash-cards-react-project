@@ -1,3 +1,4 @@
+
 .App{
     margin: 0 auto;
     
@@ -5,13 +6,14 @@
 .word{
     
     border: 1px solid black;
-    width: 20em;
+    max-width: 18em;
+    min-width: 10em;
+    width: 17em;
     padding: 10px;
     margin: 10px auto;
     background-color: white;
     border-radius: 5px;
     height: 12em;
-
     
 }
 .word-meaning {
@@ -35,7 +37,7 @@ padding: 10px;
 .cardBox{
     background-color: rgb(186, 243, 137);
     height: 14em;
-    width: 380px;
+    width: 20em;
     margin: 10px;
     padding: 20px;
     position: relative;
@@ -65,8 +67,8 @@ background-color: rgb(244, 82, 95);
 }
 
 .TableContainer{
-    padding:20px;
-    margin: 20px;
+    padding:1em;
+    margin: 1em;
 }
 
 .MyHeader{
@@ -76,15 +78,50 @@ background-color: rgb(244, 82, 95);
    
 }
 .Heading{
-    font-size: 30px;
-    margin: 2em auto;
-    padding-right: 10em;
+    font-size: 1.5em;
+   
 }
 .nav-link{
     color: black;
     margin: 10px;
 }
+.HeadingContainer {
+    align-self: center;
+   
+}
+@media screen and (max-width: 992px){
+    .HeadingContainer {
+        margin: 0 auto;
+     
+     }   
+     .CardBoxesContainer{
+        flex-direction:column;
+    }
+    .cardBox{
+        margin: 1em auto;
+    }
+    .table{
+        font-size: 0.5rem;
+    }
+    .TableContainer{
+        margin: 0
+    }
+}
 
+@media screen and ( min-width: 1024px){
+    
+    .Booster{
+        display: none;
+       
+    }
+   
+}
+@media screen and ( min-width: 1280px){
+    .Booster{
+       display: block;
+       
+    }
+}
 .LogoPng{
     height: 50px;
 }
@@ -104,11 +141,20 @@ background-color: rgb(244, 82, 95);
 
 .swbtn {
     border: none;
-    border-radius: 10px;
-    background-color: rgb(186, 243, 137);;
+    background-color: white; 
 
 }
+
 .SliderContainer{
     margin: 10px;
     padding: 10px;
+}
+.items{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.Booster{
+    width: 10em;
 }

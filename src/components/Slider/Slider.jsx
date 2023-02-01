@@ -43,7 +43,7 @@ const Items = () => {
 
             <CardsContainer items={items} />
 
-            <SwitchButton className="swbtn, rightButton" title="Next" direction="1" switchCard={switchCard} />
+            <SwitchButton title="Next" direction="1" switchCard={switchCard} />
         </div>
     )
 }

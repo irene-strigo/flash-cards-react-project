@@ -18,8 +18,12 @@ function Header() {
             <Nav.Item>
                 <Nav.Link eventKey="link-3">Link</Nav.Link>
             </Nav.Item>
-
-            <div className='Heading'>Флеш-карты для изучения английского языка</div>
+            <Nav.Item >
+                <div className="Booster"></div>
+            </Nav.Item>
+            <Nav.Item className='HeadingContainer' >
+                <div className='Heading'>Флеш-карты для изучения английского языка</div>
+            </Nav.Item>
 
         </Nav>
 

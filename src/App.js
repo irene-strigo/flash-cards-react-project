@@ -26,9 +26,9 @@ function App() {
 
         <NewCardsBox type="unknown"></NewCardsBox>
 
-        <NewCardsBox words={allWords.slice(1)} type="inbox" />
+        <NewCardsBox title="все карточки" words={allWords.slice(1)} type="inbox" />
 
-        <NewCardsBox type="guessed">известные</NewCardsBox>
+        <NewCardsBox title="известные" type="guessed">известные</NewCardsBox>
       </div>
       <div className='TableContainer'>
         <EditableTable columns={columns} rows={allWords} actions />
