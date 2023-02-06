@@ -2,10 +2,12 @@
 import './App.css';
 import NewCardsBox from './components/NewCardBox/NewCardBox';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import './components/Common.css';
 import EditableTable from "./components/EditableTable/EditableTable";
 import Slider from "./components/Slider/Slider";
-import allWords from './components/Slider/words.json'
+import allWords from './components/Slider/words.json';
+
 
 
 const columns = [
@@ -19,10 +21,10 @@ const columns = [
 function App() {
   return (
     < div className="App">
-      <Header></Header>
-      <div className='SliderContainer'>
+      <Header id="Header"></Header>
+      <div id="Slider" className='SliderContainer'>
         <Slider></Slider></div>
-      <div className='CardBoxesContainer'>
+      <div id="CardBox" className='CardBoxesContainer'>
 
         <NewCardsBox type="unknown"></NewCardsBox>
 
@@ -30,9 +32,10 @@ function App() {
 
         <NewCardsBox title="известные" type="guessed">известные</NewCardsBox>
       </div>
-      <div className='TableContainer'>
+      <div id="Table" className='TableContainer'>
         <EditableTable columns={columns} rows={allWords} actions />
       </div>
+      <Footer></Footer>
     </div>
   );
 }
