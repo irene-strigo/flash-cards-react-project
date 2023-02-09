@@ -7,7 +7,6 @@ export class VoiceComponent extends Component {
             supported: true,
             lang: props.lang || "en-Us",
             text: props.text,
-
             autoPlay: false,
             isSpeeking: false
         };
