@@ -104,9 +104,9 @@ function App() {
 
             <NewCardsBox type="unknown"></NewCardsBox>
 
-            <NewCardsBox title="все карточки" words={allWords.slice(1)} type="inbox" />
+            <NewCardsBox type="inbox" words={allWords.slice(1)} />
 
-            <NewCardsBox title="известные" type="guessed"></NewCardsBox>
+            <NewCardsBox type="known"></NewCardsBox>
           </div>} />
         </Routes>
         <Footer id="Footer"></Footer>

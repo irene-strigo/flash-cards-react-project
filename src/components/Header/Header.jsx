@@ -13,9 +13,7 @@ function Header() {
 
                     <Link className="navLink" to="/home"><img src="assets/images/home.png" alt='home'></img></Link>
 
-
                     <Link className="navLink" to="/game"><img src="assets/images/cards.png" alt='game'></img></Link>
-
 
                     <Link className="navLink" to="/cards"><img src="assets/images/container.png" alt='home'></img></Link>
 
