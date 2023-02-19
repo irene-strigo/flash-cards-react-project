@@ -20,6 +20,7 @@ const words = allWords.map((word, index) => {
   word.active = (index === 0)
   word.unknown = false
   word.known = false
+  word.learned = false
   return word
 })
 
@@ -31,8 +32,10 @@ const columns = [
   { field: 'tags', fieldName: 'Tags' },
 ];
 
+
 function App() {
   let [items, setItems] = useState(words)
+
 
   const switchCard = (command) => {
     // direction === prev - влево
@@ -69,6 +72,8 @@ function App() {
         items = itemsInbox.concat(itemsOther)
         break;
       }
+
+      default: { }
     }
 
     const nextActiveIndex = items.findIndex(item => !item.unknown && !item.known)
@@ -86,6 +91,7 @@ function App() {
         <Header>
         </Header>
         <Routes>
+          <Route path="/" element={<EditableTable columns={columns} rows={allWords} actions />} />
           <Route path="/game" element={<div id="cardsPage">
             <div id="slider" className='SliderContainer'>
               <Slider word={items.find(w => w.active)} switchCard={switchCard} ></Slider>

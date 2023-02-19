@@ -27,7 +27,7 @@ const EditableTable = ({ columns, rows, actions }) => {
     }
     const handleCancelEditing = () => {
         setIsEditMode(false);
-        setEditedRow(undefined);
+        setEditedRow(null);
     }
     const handleSaveRowChanges = () => {
         setTimeout(() => {
