@@ -1,9 +1,13 @@
-function Footer() {
-    return (
-        <div className="FooterContainer">
-            &copy; ItgirlsSchool 2023
+import React, { useContext } from "react";
+import { ThemeContext } from "../Context/Context";
 
-        </div>
+function Footer() {
+    const { theme } = useContext(ThemeContext);
+    return (
+        <div className={`FooterContainer ${theme}-theme`} >
+            & copy; ItgirlsSchool 2023
+
+        </div >
 
     )
 

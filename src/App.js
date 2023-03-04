@@ -1,6 +1,5 @@
-
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import NewCardsBox from './components/NewCardBox/NewCardBox';
 import Header from './components/Header/Header';
@@ -8,21 +7,17 @@ import Footer from './components/Footer/Footer';
 import './components/Common.css';
 import EditableTable from "./components/EditableTable/EditableTable";
 import Slider from "./components/Slider/Slider";
-import allWords from './words.json';
+import Loading from "./components/Loading/Loading";
+import { ThemeContextProvider } from "./components/Context/Context";
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+/*import { ContextProvider } from './components/Context/Context';*/
 
-const words = allWords.map((word, index) => {
-  word.active = (index === 0)
-  word.unknown = false
-  word.known = false
-  word.learned = false
-  return word
-})
+
 
 const columns = [
   { field: 'id', fieldName: '#' },
@@ -34,7 +29,50 @@ const columns = [
 
 
 function App() {
-  let [items, setItems] = useState(words)
+  let [currentState, setState] = useState({
+    loading: true,
+    items: []
+  })
+  let items = currentState.items
+
+  useEffect(() => {
+    fetch('http://itgirlschool.justmakeit.ru/api/words')
+      .then(response => {
+        if (response.ok) { //Проверяем что код ответа 200
+          return response.json();
+        } else {
+          throw new Error('Something went wrong ...');
+        }
+      })
+      .then((allWords) => {
+        const items = allWords.map((word, index) => {
+          word.active = (index === 0)
+          word.unknown = false
+          word.known = false
+          word.learned = false
+          return word
+        })
+        setTimeout(() => { setState({ items, loading: false }) }, 100)
+        return () => { }
+      })
+      .catch(error => console.log(error));
+    //eslint-disable-next-line
+  }, [])
+
+  const addWord = (word) => {
+    const newWord = {
+      ...word,
+      active: false,
+      unknown: false,
+      known: false,
+      learned: false,
+    }
+
+    setState({
+      items: [...items, newWord],
+      loading: false
+    })
+  }
 
 
   const switchCard = (command) => {
@@ -82,43 +120,57 @@ function App() {
       return item
     })
 
-    setItems(allItems)
+    setState({ items: allItems, loading: false })
   }
 
   return (
-    <Router>
-      < div className="App">
-        <Header>
-        </Header>
-        <Routes>
-          <Route path="/" element={<EditableTable columns={columns} rows={allWords} actions />} />
-          <Route path="/game" element={<div id="cardsPage">
-            <div id="slider" className='SliderContainer'>
-              <Slider word={items.find(w => w.active)} switchCard={switchCard} ></Slider>
-            </div>
+    <ThemeContextProvider>
+      <Router>
+        < div className="App">
 
-            <div id="cardBox" className='CardBoxesContainer'>
-              <NewCardsBox type="unknown" words={items.filter(w => !w.active && w.unknown)} />
+          <Header >
+          </Header>
+          <Routes>
+            <Route path="/" element={
+              <>
+                {currentState.loading && <Loading />}
+                {!currentState.loading && <EditableTable columns={columns} rows={items} actions addWord={addWord} />}
+              </>
 
-              <NewCardsBox type="inbox" words={items.filter(w => !w.active && !w.known && !w.unknown)} />
+            } />
+            <Route path="/game" element={
+              <div id="cardsPage">
+                {currentState.loading && <Loading />}
+                {!currentState.loading && <>
+                  <div id="slider" className='SliderContainer'>
+                    <Slider word={items.find(w => w.active)} switchCard={switchCard} ></Slider>
+                  </div>
 
-              <NewCardsBox type="known" words={items.filter(w => !w.active && w.known)} />
-            </div>
-          </div>} />
-          <Route path="/home" element={<EditableTable columns={columns} rows={allWords} actions />} />
-          <Route path="/cards" element={<div id="CardBox" className='CardBoxesContainer'>
+                  <div id="cardBox" className='CardBoxesContainer'>
+                    <NewCardsBox type="unknown" words={items.filter(w => !w.active && w.unknown)} />
 
-            <NewCardsBox type="unknown"></NewCardsBox>
+                    <NewCardsBox type="inbox" words={items.filter(w => !w.active && !w.known && !w.unknown)} />
 
-            <NewCardsBox type="inbox" words={allWords.slice(1)} />
+                    <NewCardsBox type="known" words={items.filter(w => !w.active && w.known)} />
 
-            <NewCardsBox type="known"></NewCardsBox>
-          </div>} />
-        </Routes>
-        <Footer id="Footer"></Footer>
-      </div>
-    </Router>
+                  </div>
+                </>}
+              </div>
+            } />
+            <Route path="/cards" element={<div id="CardBox" className='CardBoxesContainer'>
 
+              <NewCardsBox type="unknown"></NewCardsBox>
+
+              <NewCardsBox type="inbox" words={items.slice(1)} />
+
+              <NewCardsBox type="known"></NewCardsBox>
+            </div>} />
+          </Routes>
+          <Footer id="Footer">
+          </Footer>
+        </div>
+      </Router>
+    </ThemeContextProvider>
 
 
   );

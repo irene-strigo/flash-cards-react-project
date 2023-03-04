@@ -20,7 +20,7 @@
     font-size: larger;
     font-weight: 600;
     padding: 12px;
-    color: rgb(62, 62, 190);
+    color: rgb(8, 8, 49);
 }
 .word-transcription{
 padding: 10px;
@@ -191,7 +191,7 @@ button.explanation:focus-visible {
    
 }
 .mainMenuContainer{
-    background-color: rgb(186, 243, 137);
+   
     height: 10em;
     align-self: center;
 }
@@ -210,5 +210,13 @@ border: none;
 }
 .knownbtn{
  background-color: rgb(116, 224, 241);
+}
+
+.light-theme{
+    background-color: rgb(186, 243, 137);
+}
+.dark-theme{
+    background-color: rgb(20, 71, 17);
+    color: white;
 }
 

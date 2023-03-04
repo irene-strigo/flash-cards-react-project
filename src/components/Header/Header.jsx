@@ -1,17 +1,23 @@
-
+import React, { useContext } from 'react'
 import {
-
     Link
-
 } from "react-router-dom";
+import ThemeButton from "../ThemeButton/ThemeButton";
+import { ThemeContext } from "../Context/Context";
+
+
 function Header() {
+    const { theme } = useContext(ThemeContext);
+
     return (
-        <>
-            <div className='mainMenuContainer'>
+        <div className={`mainMenuContainer ${theme}-theme`}>
+
+            <div>
                 <div className='Heading'>Флеш-карты для изучения английского языка</div>
+                <ThemeButton></ThemeButton>
                 <nav className='mainMenu'>
 
-                    <Link className="navLink" to="/home"><img src="assets/images/home.png" alt='home'></img></Link>
+                    <Link className="navLink" to="/"><img src="assets/images/home.png" alt='home'></img></Link>
 
                     <Link className="navLink" to="/game"><img src="assets/images/cards.png" alt='game'></img></Link>
 
@@ -19,7 +25,7 @@ function Header() {
 
                 </nav></div>
 
-        </>
+        </div>
     );
 }
 export default Header

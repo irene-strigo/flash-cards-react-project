@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { VoiceComponent } from '../VoiceComponent/VoiceComponent'
+/*import { ThemeContext } from "../Context/Context";*/
 
 export function Card(props) {
     const [showTranslation, setTranslation] = useState(false)
@@ -11,8 +12,11 @@ export function Card(props) {
     const is_active = props.active
     const ref = useRef()
     useEffect(() => is_active ? ref.current.focus() : () => { }, [is_active]);
+
+    /*const { theme } = useContext(ThemeContext);*/
+
     return (
-        <div className='word'>
+        <div className="word">
             {is_active && <VoiceComponent text={props.english}></VoiceComponent>}
             <div className='word-meaning'>{props.english} </div>
             <div className='word-transcription'>{props.transcription}</div>
