@@ -1,28 +1,18 @@
-
 import './App.css';
-import React, { useState } from 'react'
-
+import React from 'react'
 import NewCardsBox from './components/NewCardBox/NewCardBox';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import './components/Common.css';
 import EditableTable from "./components/EditableTable/EditableTable";
 import Slider from "./components/Slider/Slider";
-import allWords from './words.json';
+import { observer, inject } from "mobx-react";
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-
-const words = allWords.map((word, index) => {
-  word.active = (index === 0)
-  word.unknown = false
-  word.known = false
-  word.learned = false
-  return word
-})
 
 const columns = [
   { field: 'id', fieldName: '#' },
@@ -32,69 +22,29 @@ const columns = [
   { field: 'tags', fieldName: 'Tags' },
 ];
 
-
-function App() {
-  let [items, setItems] = useState(words)
-
-
-  const switchCard = (command) => {
-    // direction === prev - влево
-    // direction === next - вправо
-
-    const activeIndex = items.findIndex(item => item.active)
-
-    switch (command) {
-
-      case 'unknown': {
-        items[activeIndex].unknown = true
-        items[activeIndex].known = false
-        break;
-      }
-
-      case 'known': {
-        items[activeIndex].known = true
-        items[activeIndex].unknown = false
-        break;
-      }
-
-      case 'prev': {
-        const itemsInbox = items.filter(w => !w.known && !w.unknown)
-        const itemsOther = items.filter(w => w.known || w.unknown)
-        itemsInbox.push(itemsInbox.shift())
-        items = itemsInbox.concat(itemsOther)
-        break;
-      }
-
-      case 'next': {
-        const itemsInbox = items.filter(w => !w.known && !w.unknown)
-        const itemsOther = items.filter(w => w.known || w.unknown)
-        itemsInbox.unshift(itemsInbox.pop())
-        items = itemsInbox.concat(itemsOther)
-        break;
-      }
-
-      default: { }
+const App = inject(['wordsStore'])(observer(({ wordsStore }) => {
+  /*
+    const addNewBook = () => {
+      if (!newBook) return;
+      bookStore.addBook(newBook);
+      setNewBook("");
     }
+    const deleteBook = (index) => {
+      bookStore.removeBook(index)
+    }*/
 
-    const nextActiveIndex = items.findIndex(item => !item.unknown && !item.known)
-    const allItems = items.map((item, index) => {
-      item.active = (index === nextActiveIndex)
-      return item
-    })
-
-    setItems(allItems)
-  }
+  const items = wordsStore.words
 
   return (
     <Router>
-      < div className="App">
+      <div className="App">
         <Header>
         </Header>
         <Routes>
-          <Route path="/" element={<EditableTable columns={columns} rows={allWords} actions />} />
+          <Route path="/" element={<EditableTable columns={columns} rows={items} actions />} />
           <Route path="/game" element={<div id="cardsPage">
             <div id="slider" className='SliderContainer'>
-              <Slider word={items.find(w => w.active)} switchCard={switchCard} ></Slider>
+              <Slider word={items.find(w => w.active)} switchCard={wordsStore.switchCard} ></Slider>
             </div>
 
             <div id="cardBox" className='CardBoxesContainer'>
@@ -105,12 +55,12 @@ function App() {
               <NewCardsBox type="known" words={items.filter(w => !w.active && w.known)} />
             </div>
           </div>} />
-          <Route path="/home" element={<EditableTable columns={columns} rows={allWords} actions />} />
+          <Route path="/home" element={<EditableTable columns={columns} rows={items} actions />} />
           <Route path="/cards" element={<div id="CardBox" className='CardBoxesContainer'>
 
             <NewCardsBox type="unknown"></NewCardsBox>
 
-            <NewCardsBox type="inbox" words={allWords.slice(1)} />
+            <NewCardsBox type="inbox" words={items.slice(1)} />
 
             <NewCardsBox type="known"></NewCardsBox>
           </div>} />
@@ -121,7 +71,8 @@ function App() {
 
 
 
-  );
-}
+  )
+
+}))
 
 export default App;
