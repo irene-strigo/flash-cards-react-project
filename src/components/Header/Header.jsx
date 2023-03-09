@@ -9,6 +9,7 @@ function Header() {
         <>
             <div className='mainMenuContainer'>
                 <div className='Heading'>Флеш-карты для изучения английского языка</div>
+                <div>Test div</div>
                 <nav className='mainMenu'>
 
                     <Link className="navLink" to="/home"><img src="assets/images/home.png" alt='home'></img></Link>
