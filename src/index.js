@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { Provider } from 'mobx-react';
 import WordsStore from "./stores/WordsStore";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

@@ -1,4 +1,4 @@
-import { action, observable, makeObservable } from 'mobx';
+import { action, observable, makeObservable, runInAction } from 'mobx';
 
 class WordsStore {
     @observable words = []
@@ -9,9 +9,10 @@ class WordsStore {
 
     constructor() {
         makeObservable(this);
+        runInAction(this.fetchWords);
     }
 
-    @action fetchWords = async () => {
+    fetchWords = async () => {
         this.isLoading = true;
         return fetch(this.apiBaseUrl)
             .then(response => {

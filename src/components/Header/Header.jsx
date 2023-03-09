@@ -12,7 +12,7 @@ function Header() {
                 <div>Test div</div>
                 <nav className='mainMenu'>
 
-                    <Link className="navLink" to="/home"><img src="assets/images/home.png" alt='home'></img></Link>
+                    <Link className="navLink" to="/"><img src="assets/images/home.png" alt='home'></img></Link>
 
                     <Link className="navLink" to="/game"><img src="assets/images/cards.png" alt='game'></img></Link>
 

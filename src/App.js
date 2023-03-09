@@ -29,9 +29,19 @@ const App = inject(['wordsStore'])(observer(({ wordsStore }) => {
       bookStore.addBook(newBook);
       setNewBook("");
     }
-    const deleteBook = (index) => {
-      bookStore.removeBook(index)
-    }*/
+ */
+
+  const switchCard = (command) => {
+    wordsStore.switchCard(command)
+  }
+
+  const upsertWord = (upsertableWord) => {
+    wordsStore.upsertWord(upsertableWord)
+  }
+
+  const deleteWord = (wordID) => {
+    wordsStore.deleteWord(wordID)
+  }
 
   const items = wordsStore.words
 
@@ -41,10 +51,12 @@ const App = inject(['wordsStore'])(observer(({ wordsStore }) => {
         <Header>
         </Header>
         <Routes>
-          <Route path="/" element={<EditableTable columns={columns} rows={items} actions />} />
+          <Route path="/" element={
+            <EditableTable columns={columns} rows={items} actions upsertWord={upsertWord} deleteWord={deleteWord} />
+          } />
           <Route path="/game" element={<div id="cardsPage">
             <div id="slider" className='SliderContainer'>
-              <Slider word={items.find(w => w.active)} switchCard={wordsStore.switchCard} ></Slider>
+              <Slider word={items.find(w => w.active)} switchCard={switchCard} ></Slider>
             </div>
 
             <div id="cardBox" className='CardBoxesContainer'>
@@ -55,7 +67,6 @@ const App = inject(['wordsStore'])(observer(({ wordsStore }) => {
               <NewCardsBox type="known" words={items.filter(w => !w.active && w.known)} />
             </div>
           </div>} />
-          <Route path="/home" element={<EditableTable columns={columns} rows={items} actions />} />
           <Route path="/cards" element={<div id="CardBox" className='CardBoxesContainer'>
 
             <NewCardsBox type="unknown"></NewCardsBox>
