@@ -80,6 +80,9 @@ background-color: rgb(244, 82, 95);
     color: black;
     margin: 10px;
 }
+.navPicture:hover{
+    width: 50px
+}
 .HeadingContainer {
     align-self: center;
    
