@@ -76,12 +76,15 @@ background-color: rgb(244, 82, 95);
     font-size: 1.5em;
     padding: 10px;
 }
-.nav-link{
+/*.nav-link{
     color: black;
     margin: 10px;
+}*/
+.navPicture{
+    margin:10px
 }
 .navPicture:hover{
-    width: 50px
+    transform: scale(1.3)
 }
 .HeadingContainer {
     align-self: center;

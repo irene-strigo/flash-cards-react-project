@@ -16,7 +16,7 @@ function Header() {
 
                     <Link className="navLink" to="/game"><img className="navPicture" src="assets/images/cards.png" alt='game'></img></Link>
 
-                    <Link className="navLink" to="/cards"><img className="navPicture" src="assets/images/container.png" alt='home'></img></Link>
+
 
                 </nav></div>
 

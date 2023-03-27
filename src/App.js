@@ -67,14 +67,7 @@ const App = inject(['wordsStore'])(observer(({ wordsStore }) => {
               <NewCardsBox type="known" words={items.filter(w => !w.active && w.known)} />
             </div>
           </div>} />
-          <Route path="/cards" element={<div id="CardBox" className='CardBoxesContainer'>
 
-            <NewCardsBox type="unknown"></NewCardsBox>
-
-            <NewCardsBox type="inbox" words={items.slice(1)} />
-
-            <NewCardsBox type="known"></NewCardsBox>
-          </div>} />
         </Routes>
         <Footer id="Footer"></Footer>
       </div>
